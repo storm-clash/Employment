@@ -29,9 +29,11 @@ const skills_words = [
 
 const skill = document.getElementById('skill');
 const overlay = document.getElementById('overlay');
-
+const add_Skill = document.getElementById('add_Skill');
+const skill_div = document.querySelector('.personal__Form-skill');
 
 let globalInputValues = [];
+let globalInputSkills = [];
 let offenseBeingEditedId = null;
 
 let toggleInput = () => {
@@ -243,6 +245,63 @@ skill.addEventListener('input', ()=>{
     }
 });
 
+add_Skill.addEventListener('click', ()=>{
+
+    let skill_Value = skill.value;
+    if(skill_Value === '' || skill_Value === null || skill_Value === undefined){
+        console.log("NO");
+            return;
+    }
+
+    const show_Skill_Card = document.querySelector('.show_Skill_Card');
+
+    let skilldItem = document.createElement('div');
+    skilldItem.className = 'card'; 
+    skilldItem.dataset.id = Date.now();
+
+    let skillData = document.createElement('div');
+
+
+    let inputValues = [];
+    
+        let p = document.createElement('p');
+        p.textContent = skill.value;
+
+        skillData.appendChild(p);
+        skilldItem.appendChild(skillData);
+
+        inputValues.push(skill.value);
+        skill.value = '';
+    
+    const skillId = skilldItem.dataset.id;
+    let newCard = new SkillCard(inputValues,skillId);
+    globalInputSkills.push(newCard);
+
+    let skillButton = document.createElement('div');
+    skillButton.className = 'flex-row';
+
+    let button = document.createElement('i');
+    button.className = 'fa-solid fa-trash fa-2x';
+
+    button.addEventListener('click', () => {
+        show_Skill_Card.removeChild(skilldItem);
+        globalInputSkills = globalInputSkills.filter(card => card.id !== skillId);
+        console.log(globalInputSkills);
+    });
+
+    
+    skillButton.appendChild(button);
+    skilldItem.appendChild(skillButton);
+    show_Skill_Card.appendChild(skilldItem);
+
+    
+
+    const totalHeight = skill_div.scrollHeight + show_Skill_Card.scrollHeight;
+    skill_div.style.maxHeight = `${totalHeight}px`;
+    console.log(globalInputSkills);
+
+});
+
 overlay.addEventListener('click', () => {
     if (overlay.innerText.length !== 0) {
         
@@ -254,6 +313,13 @@ overlay.addEventListener('click', () => {
 
 
 class OffenseCard {
+    constructor(values, id) {
+        this.values = values;
+        this.id = id;
+    }
+}
+
+class SkillCard {
     constructor(values, id) {
         this.values = values;
         this.id = id;

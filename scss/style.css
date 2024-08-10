@@ -511,12 +511,14 @@ main, section {
         grid-column: span 2;
         justify-self: end;
     }
-.show_Offense_Card {
+.show_Offense_Card,
+.show_Skill_Card {
     display:grid;
     width:100%;
     grid-template-columns:repeat(3,1fr);
     justify-content:start;
     gap:1rem;
+    margin-top: 1rem;
 }
 .card {
     display:grid;
