@@ -1,0 +1,600 @@
+:root {
+    --clr-primary-400: hsl(158, 36%, 37%);
+    --clr-secondary-200: hsl(30, 38%, 92%);
+    --clr-neutral-900: hsl(212, 21%, 14%);
+    --clr-neutral-400: hsl(228, 12%, 48%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-shadow:rgba(119, 191, 233, 0.432);
+    --primary-color: rgb(0, 105, 255);
+    --fw-regular: 500;
+    --fw-bold: 700;
+    --ff-accent: "Fraunces", serif;
+    --ff-base: "Montserrat", sans-serif;
+}
+
+
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+    margin: 0;
+}
+/*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+
+html, body {
+    height: auto;
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+/*
+    5. Improve media defaults
+  */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+/*
+    6. Remove built-in form typography styles
+  */
+input, button, textarea, select {
+    font: inherit;
+}
+/*
+    7. Avoid text overflows
+  */
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+/*General styling*/
+body {
+    font-family: var(--ff-base);
+    font-weight: var(--fw-regular);
+    font-size: 0.875rem;
+    color: var(--clr-neutral-400);
+    background-color: var(--clr-secondary-200);
+    max-width:100vw;
+    margin:0 1rem;
+    
+}
+legend {
+    font-size: 1rem;
+    font-weight: var(--fw-bold);
+}
+label{
+    width: 60%;
+    display: inline-flex;
+    gap: .3rem;
+}
+    label::after {
+        content:"*";
+        color:red;
+    }
+input:not(:is([type="radio"])) {
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    transition: 600ms ease;
+    height: 2.75rem;
+    width: 100%;
+    transition:600ms ease;
+}
+    input:focus {
+        border-bottom: 1px solid rgb(0, 105, 255);
+    }
+.flex-group {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:1rem;
+}
+.flex-column {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.flex-row {
+    display:flex;
+    flex-direction:row;
+    gap:1rem;
+}
+.fa-solid:hover {
+    cursor:pointer;
+}
+/*Header*/
+header {
+    width: 100%;
+    height: 6rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: var(--clr-neutral-100);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    z-index: 9;
+}
+.left_header_container,
+.center_container,
+.only_Print,
+.right_header_container {
+    flex: 1 0 200px;
+    max-height: 6rem;
+}
+
+    .logo {
+        max-width: 4.5rem;
+        height: auto;
+    }
+.lastName {
+    color: var(--primary-color);
+}
+.center_container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    align-items:center;
+    
+}
+
+.list_Content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    gap: 1rem;
+    padding: 5px;
+    list-style: none;
+    transition: 600ms ease;
+}
+
+    .list_Content::-webkit-scrollbar {
+        height: 0;
+    }
+
+.nav_item {
+    color: black;
+    padding: 15px;
+}
+
+    .nav_item a {
+        text-decoration: none;
+        color: black;
+        text-decoration-color: white;
+        position: relative;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        display: block;
+    }
+
+        .nav_item a::after {
+            content: "";
+            height: 2px;
+            background: rgb(0, 105, 255);
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            transition: 600ms ease;
+        }
+
+        .nav_item a:hover::after {
+            width: 100px;
+        }
+
+        .nav_item a:hover {
+            color: gray;
+            text-underline-offset: 1rem;
+            text-decoration-color: rgb(181, 181, 181);
+            transition: 600ms ease;
+        }
+:is(a,.logo) {
+    cursor:pointer;
+}
+.button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(0, 105, 255);
+    color: white;
+    display: grid;
+    place-content: center;
+    text-transform: uppercase;
+    box-shadow: -10px 10px 0px 0px rgba(119, 191, 233, 0.432);
+    transition: 600ms ease;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: rgba(119, 191, 233, 0.432);
+    color: rgb(0, 105, 255);
+    box-shadow: 10px 10px 0px 0px rgb(0, 105, 255);
+}
+
+.delete_button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    display: grid;
+    place-content: center;
+    text-transform: uppercase;
+    box-shadow: -10px 10px 0px 0px rgba(119, 191, 233, 0.432);
+    transition: 600ms ease;
+}
+
+    .delete_button:hover {
+        cursor: pointer;
+        background-color: rgba(119, 191, 233, 0.432);
+        color: red;
+        box-shadow: 10px 10px 0px 0px rgb(0, 105, 255);
+    }
+#update_Offense {
+    display:none;
+}
+/*Main*/
+main, section {
+    min-height: 100vh;
+    max-width: 100vw;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.main__Left-Blob {
+    width: 31.5rem;
+    height: 31.5rem;
+    background-color: lightcoral;
+    border-radius: 30% 70% 60% 40% / 30% 17% 83% 70%;
+    position: absolute;
+    top: 5rem;
+    left: 0;
+}
+.main__Right-Blob {
+    width: 31.5rem;
+    height: 31.5rem;
+    background-color: lightcoral;
+    border-radius: 74% 26% 8% 92% / 58% 17% 83% 42%;
+    position: absolute;
+    bottom: 5rem;
+    right: 0;
+}
+.main__Product {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: .5rem;
+    flex: 1 0 400px;
+    width: 100%;
+    z-index: 2;
+}
+.main__About,
+.main__Openings {
+    flex: 1 0 200px;
+    background-color:white;
+    border-radius:0.5rem;
+}
+.main__About {
+   margin-left:30%; 
+   padding:0.5rem;
+   
+}
+.about__Description {
+    padding:1rem;
+    font-size: 1rem;
+    font-weight: var(--fw-bold);
+    line-height:2rem;
+}
+.about__logo {
+    min-width: 300px;
+    height: 300px;
+}
+    .about__logo img {
+        min-width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+.main__Openings {
+    display:flex;
+    align-items:center;
+    margin-right: 30%;
+    padding: 0.5rem;
+}
+.openings__Picture {
+    flex: 1 0 200px;
+    background-color: white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.openings__logo {
+    min-width: 400px;
+    height: 400px;
+}
+    .openings__logo img {
+        min-width: 400px;
+        height: 400px;
+        object-fit: contain;
+    }
+
+.openings__Container {
+    flex: 1 0 200px;
+    background-color: #FCD0A1;
+    border-radius:0.5rem;
+    display: flex;
+    flex-direction: column;
+    height:65%;
+}
+
+.opening__offers, .opening__link {
+    display: flex;
+    align-items: center;
+    
+    flex: 1 0 100px;
+}
+.opening__offers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding:0.5rem;
+}
+.opening__link {
+    justify-content: center;
+}
+
+/*Personal Section*/
+.personal_Container {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1.25em 3.43em rgba(0,0,0,0.08);
+}
+
+.personal__Center-Container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 50%;
+    border-radius: 0.5rem;
+    border-top: 2px solid var(--clr-secondary-200);
+    border-right: 2px solid var(--clr-secondary-200);
+    box-shadow: 0 1.25em 3.43em rgba(0,0,0,0.08);
+}
+
+.personal__Name {
+    display:flex;
+    flex-direction:column;
+    padding:.5rem;
+}
+    .personal__Name fieldset {
+        border: none;
+        border-radius: 0.5rem;
+        border-left: 1px solid var(--clr-secondary-200);
+        border-top: 1px solid var(--clr-secondary-200);
+        box-shadow: 0 1.25em 3.43em rgba(0,0,0,0.08);
+    }
+    .personal__Name-field {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        
+    }
+.personal__Layaout {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:.5rem;
+    position: relative;
+}
+    .personal__Layaout > input {
+        margin-bottom:.5rem;
+    }
+.personal__Column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.personal__Address {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1rem;
+}
+    .personal__Address .personal__Layaout:nth-child(2) {
+        grid-column:span 3;
+    }
+.personal__Phone {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+    gap: 1rem;
+}
+.personal__Other {
+    display:flex;
+    flex-direction:column;
+    flex:1 0 auto;
+}
+.personal__Column-exp {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+    .personal__Column-exp label {
+        flex-grow: 1;
+        flex-basis: 90%;
+        
+    }
+    .personal__Column-exp input[type="radio"] {
+        flex-grow: 1;
+        flex-basis: 5%;
+    }
+
+.personal__Column-job {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+    .personal__Column-job label:first-child {
+        flex-grow: 1;
+        flex-basis: 30%;
+        max-width:30%;
+    }
+    .personal__Column-job div {
+        flex-grow: 1;
+    }
+
+    .personal__Column-job input[type="radio"] {
+        flex-grow: 1;
+        flex-basis: 80%;
+    }
+#explain_Container {
+    transition:600ms ease;
+}
+#explain,
+#different_explain,
+#personal__Form-convicted {
+    display:none;
+    transition: 600ms ease;
+    max-height: 0;
+    margin-bottom: 1rem;
+}
+
+.personal__Offenses-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto auto;
+}
+    .personal__Offenses-container div:first-child {
+        grid-column: span 2;
+    }
+    .personal__Offenses-container div:nth-child(4) {
+        grid-column: span 2;
+        justify-self: end;
+    }
+.show_Offense_Card {
+    display:grid;
+    width:100%;
+    grid-template-columns:repeat(3,1fr);
+    justify-content:start;
+    gap:1rem;
+}
+.card {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:0.5rem;
+    place-items:center;
+    max-width:14rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.personal__Offenses-container label {
+    width: 30%;
+}
+.personal__Skill-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    gap: 10px;
+    grid-template-rows: auto auto;
+}
+.personal__Skill-container div:nth-child(1) {
+    grid-column: span 2;
+}
+    .personal__Skill-container div:nth-child(2) {
+        grid-column: span 2;
+        justify-self: end;
+    }
+    .input-container {
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    #skill {
+        width: 100%;
+        padding-right: 40px; 
+        box-sizing: border-box;
+    }
+    #overlay{
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    padding: 5px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+    color: #999;
+    font-size: 14px;
+    visibility: hidden;
+    background-color: var(--clr-shadow);
+    border-radius: 0.5rem;
+
+    }
+    .input-container:hover #overlay,
+.input-container:focus-within #overlay {
+    pointer-events: auto; /* Makes the span clickable only when hovered */
+    color: #000;
+    cursor: pointer;
+    
+}
+    .personal__Skill-container label{
+        width: 30%;
+    }
+    .personal__Skill-container input{
+        width: 100%;
+    }
+    @media print {
+        .right_header_container {
+        display: none;
+    }
+
+    .only_Print {
+        display: flex;
+    }
+
+
+    .page-break {
+        page-break-before: always; /* Inserta un salto de página antes del elemento */
+    }
+}

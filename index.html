@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
+    <!--Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+    <!--Own css -->
+    <link rel="stylesheet" href="scss/style.css" />
+</head>
+<body>
+    <header>
+        <div class="left_header_container flex-group">
+            <picture class="header_logo">
+                <img class="logo" src="images/ccls_logo_sm.jpg" alt="CCLS Miami Logo" />
+            </picture>
+
+            <div class="only_Print">
+                <p>Catholic <span class="lastName">Legal Services</span></p>
+            </div>
+
+        </div>
+
+        <div class="center_container">
+            <ul class="list_Content">
+                <li class="nav_item">
+                    <a href="#personal">Personal Information</a>
+                </li>
+                <li class="nav_item">
+                    <a href="#education">Education</a>
+                </li>
+                <li class="nav_item">
+                    <a href="#information">Additional Information</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right_header_container flex-group">
+            <button class="button" id="home">Home</button>
+        </div>
+    </header>
+    <main>
+
+        <div class="main__Product">
+            <div class="main__About flex-group">
+                <p class="about__Description">
+                    Catholic Charities Legal Services is an equal opportunity employer. Prospective employees will receive consideration without
+discrimination based on race, creed, color, sex, age, national origin, citizenship status, marital status, disability, veteran status or any
+condition prescribed by state or local law.
+                </p>
+                <picture class="about__logo">
+                    <img class="logo" src="images/54850.jpg" alt="employees Lafing" />
+                </picture>
+            </div>
+            <div class="main__Openings">
+                <div class="openings__Picture">
+                    <picture class="openings__logo">
+                        <img class="logo" src="images/jobs.jpg" alt="Jobs Logo" />
+                    </picture>
+                </div>
+                <div class="openings__Container">
+                    <div class="opening__offers">
+                        <h2>Check out our job offers</h2>
+                        <p>"Success usually comes to those who are too busy to be looking for it."</p>
+                        <p>— Henry David Thoreau</p>
+                    </div>
+                    <div class="opening__link">
+                        <button id="employment" class="button">Check!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="main__Left-Blob"></div>
+        <div class="main__Right-Blob"></div> -->
+    </main>
+    <section class="personal" id="personal">
+        <h2>Personal Information</h2>
+        <div class="personal_Container">
+            <div class="personal__Center-Container">
+                <div class="personal__Name">
+                    <fieldset class="personal__Name-field">
+                        <legend>Name</legend>
+                        <div class="personal__Layaout">
+                            <label>Last Name</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>First Name</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Middle Name</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Birth Date</label>
+                            <input />
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="personal__Name">
+                    <fieldset class="personal__Address">
+                        <legend>Address</legend>
+                        <div class="personal__Layaout">
+                            <label>Street Address</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>City</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>State</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Zip Code</label>
+                            <input />
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="personal__Name">
+                    <fieldset class="personal__Phone">
+                        <legend>Phone Number</legend>
+                        <div class="personal__Layaout">
+                            <label>Home Phone</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Other Phone</label>
+                            <input />
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="personal__Name">
+                    <fieldset class="personal__Other">
+                        <legend>Other</legend>
+                        <div class="personal__Column-exp flex-row">
+                            <label>Have you ever been involuntary terminated or requested to resign? If YES, explain.</label>
+
+                            <div>
+                                <input type="radio" id="option1" name="options" value="1" />
+                                <label for="option1">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="option2" name="options" value="2" checked />
+                                <label for="option2">No</label>
+                            </div>
+
+                        </div>
+                        <div class="personal__Layaout" id="explain_Container">
+                            <input type="text" id="explain" />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Position Desired</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Salary Desired</label>
+                            <input />
+                        </div>
+                        <div class="personal__Column-job ">
+                            <label>Employment Desired.</label>
+
+                            <div>
+                                <input type="radio" id="full" name="job" value="1" />
+                                <label for="full">Full Time</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="part" name="job" value="2" />
+                                <label for="part">Part Time</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="temp" name="job" value="3" />
+                                <label for="temp">Temporary</label>
+                            </div>
+
+                        </div>
+                        <div class="personal__Column-exp flex-row">
+                            <label>Are you legally eligible to work in the United States?</label>
+
+                            <div>
+                                <input type="radio" id="permision1" name="permision" value="1" />
+                                <label for="permision1">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="permision2" name="permision" value="2" />
+                                <label for="permision2">No</label>
+                            </div>
+
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Days/Hours Available</label>
+                            <input />
+                        </div>
+                        <div class="personal__Layaout">
+                            <label>Date Available</label>
+                            <input />
+                        </div>
+                        <div class="personal__Column-exp flex-row">
+                            <label>Have you ever worked under a different name: If YES, explain</label>
+
+                            <div>
+                                <input type="radio" id="different1" name="different" value="1" />
+                                <label for="different1">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="different2" name="different" value="2" checked />
+                                <label for="different2">No</label>
+                            </div>
+
+                        </div>
+                        <div class="personal__Layaout" id="different_Container">
+                            <input type="text" id="different_explain" />
+                        </div>
+                        <div class="personal__Column-exp flex-row">
+                            <label>
+                                Have you ever been convicted of a crime or been a defendant in a civil action for
+                                an intentional tort?(Convictions will not necessarily disqualify
+                                you for the position) If YES, list offense, date and disposition of the case</label>
+
+                            <div>
+                                <input type="radio" id="convicted1" name="convicted" value="1" />
+                                <label for="convicted1">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="convicted2" name="convicted" value="2" checked />
+                                <label for="convicted2">No</label>
+                            </div>
+
+                        </div>
+                        <div id="personal__Form-convicted">
+                            <fieldset>
+                                <legend>Offenses</legend>
+
+                                <div class="personal__Offenses-container">
+                                    <div>
+                                        <div class="personal__Layaout">
+                                            <label>Offense</label>
+                                            <input name="offense"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="personal__Layaout">
+                                            <label>Date</label>
+                                            <input type="date" name="offense"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="personal__Layaout">
+                                            <label>Disposition</label>
+                                            <input name="offense" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button id="add_Offense" class="button">Add</button>
+                                        <button id="update_Offense" class="button">Update</button>
+                                    </div>
+                                </div>
+                                <div class="show_Offense_Card">
+                                    
+
+                                </div>
+                                
+                            </fieldset>
+                        </div>
+                        <div class="personal__Form-skill">
+                            <fieldset>
+                                <legend>Skills</legend>
+                                <div class="personal__Skill-container">
+                                <div>
+                                    <div class="personal__Layaout">
+                                        <label>Skill</label>
+                                        <div class="input-container">
+                                            <input name="skill" id="skill" />
+                                            <span id="overlay"></span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div>
+                                    <button id="add_Skill" class="button">Add</button>
+                                </div>
+                                </div>
+                                <div class="show_Skill_Card">
+                                    
+
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <section id="education"></section>
+    <section id="information"></section>
+
+</body>
+<script defer src="scripts/main.js"></script>
+</html>
