@@ -5,6 +5,7 @@ const exlain_div = document.getElementById('explain_Container');
 
 var radios = document.querySelectorAll('input[name="options"]');
 var different_Names = document.querySelectorAll('input[name="different"]');
+var bonded = document.querySelectorAll('input[name="bonded"]');
 var convicted_radio = document.querySelectorAll('input[name="convicted"]');
 
 const name_1 = document.getElementById('different1');
@@ -12,6 +13,9 @@ const name_different_Input = document.getElementById('different_explain');
 
 const convicted1 = document.getElementById('convicted1');
 const convicted_div = document.getElementById('personal__Form-convicted');
+
+const bonded_1 = document.getElementById('bonded1');
+const bonded_explain = document.getElementById('bonded_explain');
 
 /*Buttons Offense */
 const add_Offense = document.getElementById('add_Offense');
@@ -21,7 +25,7 @@ const personal__Name = document.querySelector('.personal__Name');
 const update_Offense = document.getElementById('update_Offense');
 
 
-/*Test */
+/*Skills */
 
 const skills_words = [
     "Lawyer", "Mechanics", "Paralegal", "Programmer", "Profesor","Secretary"
@@ -32,8 +36,36 @@ const overlay = document.getElementById('overlay');
 const add_Skill = document.getElementById('add_Skill');
 const skill_div = document.querySelector('.personal__Form-skill');
 
+/*Trainer*/
+
+const trainer_words = [
+    "Cibersecurity", "Writing", "Computer Science", "Schedulling", "Typing","MPM"
+];
+
+const trainer = document.getElementById('trainer');
+const trainer_overlay = document.getElementById('trainer_overlay');
+const add_Trainer = document.getElementById('add_Trainer');
+const trainer_div = document.querySelector('.personal__Form-trainer');
+
+/*Language */
+
+const language_words = [
+    "English", "Spanish", "Creole", "French", "Dusth","Italian"
+];
+
+const language = document.getElementById('language');
+const language_overlay = document.getElementById('language_overlay');
+const writting = document.getElementById('writting');
+const reading = document.getElementById('reading');
+const speaking = document.getElementById('speaking');
+const add_Language = document.getElementById('add_Language');
+const language_div = document.querySelector('.show_Language_Card');
+
+
 let globalInputValues = [];
 let globalInputSkills = [];
+let globalInputTrainer = [];
+let globalInputLanguage = [];
 let offenseBeingEditedId = null;
 
 let toggleInput = () => {
@@ -112,6 +144,32 @@ convicted_radio.forEach((radio) => {
 
 });
 
+
+/*Bonded*/
+
+let toggleBonded = () => {
+    var option_1 = bonded_1.checked;
+
+    if (!option_1) {
+        
+        bonded_explain.style.maxHeight = '0';
+        setTimeout(() => {
+            bonded_explain.style.display = 'none';
+        }, 1000);
+        
+        return;
+    }
+    bonded_explain.style.display = 'flex';
+    bonded_explain.style.maxHeight = `${bonded_explain.scrollHeight + 44}px`;
+
+};
+
+bonded.forEach((radio) => {
+
+    radio.addEventListener('change', toggleBonded)
+
+});
+
 add_Offense.addEventListener('click', () => {
 
     let offenseValues = Array.from(personal__Offenses).map(input => input.value);
@@ -163,7 +221,7 @@ add_Offense.addEventListener('click', () => {
 
     update.addEventListener('click', () => {
         fillInputs(inputValues);
-        update_Offense.style.display = 'flex';
+        update_Offense.style.display = 'block';
         add_Offense.style.display = 'none';
 
         offenseBeingEditedId = offenseId;
@@ -223,7 +281,7 @@ update_Offense.addEventListener('click', () => {
 
     // Reset the UI after updating
     update_Offense.style.display = 'none';
-    add_Offense.style.display = 'flex';
+    add_Offense.style.display = 'block';
     personal__Offenses.forEach(input => input.value = '');
 });
 
@@ -244,6 +302,7 @@ skill.addEventListener('input', ()=>{
         overlay.style.visibility = 'hidden';
     }
 });
+
 
 add_Skill.addEventListener('click', ()=>{
 
@@ -312,6 +371,212 @@ overlay.addEventListener('click', () => {
 });
 
 
+trainer.addEventListener('input', ()=>{
+
+    let isChanged = trainer_words.some((word)=>{
+        if(trainer.value.length !== 0 && word.startsWith(trainer.value)){
+            trainer_overlay.style.visibility = 'visible';
+            trainer_overlay.innerText = word;
+            trainer_overlay.style.cursor = 'pointer';
+            return true;
+        }
+    });
+
+    if(!isChanged){
+        trainer_overlay.innerHTML = '';
+        trainer_overlay.style.cursor = 'default';
+        trainer_overlay.style.visibility = 'hidden';
+    }
+});
+
+
+add_Trainer.addEventListener('click', ()=>{
+
+    let trainer_Value = trainer.value;
+    if(trainer_Value === '' || trainer_Value === null || trainer_Value === undefined){
+        console.log("NO");
+            return;
+    }
+
+    const show_Trainer_Card = document.querySelector('.show_Trainer_Card');
+
+    let trainerItem = document.createElement('div');
+    trainerItem.className = 'card'; 
+    trainerItem.dataset.id = Date.now();
+
+    let trainerData = document.createElement('div');
+
+
+    let inputValues = [];
+    
+        let p = document.createElement('p');
+        p.textContent = trainer.value;
+
+        trainerData.appendChild(p);
+        trainerItem.appendChild(trainerData);
+
+        inputValues.push(trainer.value);
+        trainer.value = '';
+    
+    const trainerId = trainerItem.dataset.id;
+    let newCard = new TrainerCard(inputValues,trainerId);
+    globalInputTrainer.push(newCard);
+
+    let trainerButton = document.createElement('div');
+    trainerButton.className = 'flex-row';
+
+    let button = document.createElement('i');
+    button.className = 'fa-solid fa-trash fa-2x';
+
+    button.addEventListener('click', () => {
+        show_Trainer_Card.removeChild(trainerItem);
+        globalInputTrainer = globalInputTrainer.filter(card => card.id !== trainerId);
+        console.log(globalInputTrainer);
+    });
+
+    
+    trainerButton.appendChild(button);
+    trainerItem.appendChild(trainerButton);
+    show_Trainer_Card.appendChild(trainerItem);
+
+    
+
+    const totalHeight = trainer_div.scrollHeight + show_Trainer_Card.scrollHeight;
+    trainer_div.style.maxHeight = `${totalHeight}px`;
+    console.log(globalInputTrainer);
+
+});
+
+trainer_overlay.addEventListener('click', () => {
+    if (trainer_overlay.innerText.length !== 0) {
+        
+        trainer.value = trainer_overlay.innerText;
+        trainer_overlay.innerHTML = ''; 
+        trainer_overlay.style.visibility = 'hidden';
+    }
+});
+
+
+trainer.addEventListener('input', ()=>{
+
+    let isChanged = trainer_words.some((word)=>{
+        if(trainer.value.length !== 0 && word.startsWith(trainer.value)){
+            trainer_overlay.style.visibility = 'visible';
+            trainer_overlay.innerText = word;
+            trainer_overlay.style.cursor = 'pointer';
+            return true;
+        }
+    });
+
+    if(!isChanged){
+        trainer_overlay.innerHTML = '';
+        trainer_overlay.style.cursor = 'default';
+        trainer_overlay.style.visibility = 'hidden';
+    }
+});
+
+/*Language */
+
+add_Language.addEventListener('click', ()=>{
+
+    let language_Value = language.value;
+    if(language_Value === '' || language_Value === null || language_Value === undefined){
+        console.log("NO");
+            return;
+    }
+
+    const show_Language_Card = document.querySelector('.show_Language_Card');
+
+    let languageItem = document.createElement('div');
+    languageItem.className = 'card'; 
+    languageItem.dataset.id = Date.now();
+
+    let languageData = document.createElement('div');
+
+
+    let inputValues = [];
+    
+        let p = document.createElement('p');
+        p.textContent = language.value;
+
+        let writting_P = document.createElement('p');
+        writting_P.textContent = writting.value
+
+        let reading_P = document.createElement('p');
+        reading_P.textContent = reading.value;
+
+        let speaking_P = document.createElement('p');
+        speaking_P.textContent = speaking.value;
+
+        languageData.appendChild(p);
+        languageData.appendChild(writting_P);
+        languageData.appendChild(reading_P);
+        languageData.appendChild(speaking_P);
+        languageItem.appendChild(languageData);
+
+        inputValues.push(language.value);
+        inputValues.push(writting.value);
+        inputValues.push(reading.value);
+        inputValues.push(speaking.value);
+        language.value = '';
+    
+    const languageId = languageItem.dataset.id;
+    let newCard = new LanguageCard(inputValues,languageId);
+    globalInputLanguage.push(newCard);
+
+    let languageButton = document.createElement('div');
+    languageButton.className = 'flex-row';
+
+    let button = document.createElement('i');
+    button.className = 'fa-solid fa-trash fa-2x';
+
+    button.addEventListener('click', () => {
+        show_Language_Card.removeChild(languageItem);
+        globalInputLanguage = globalInputLanguage.filter(card => card.id !== languageId);
+        console.log(globalInputLanguage);
+    });
+
+    
+    languageButton.appendChild(button);
+    languageItem.appendChild(languageButton);
+    show_Language_Card.appendChild(languageItem);
+
+    
+
+    const totalHeight = language_div.scrollHeight + show_Language_Card.scrollHeight;
+    language_div.style.maxHeight = `${totalHeight}px`;
+    console.log(globalInputLanguage);
+
+});
+
+
+
+language.addEventListener('input', ()=>{
+
+    let isChanged = language_words.some((word)=>{
+        if(language.value.length !== 0 && word.startsWith(language.value)){
+            language_overlay.style.visibility = 'visible';
+            language_overlay.innerText = word;
+            language_overlay.style.cursor = 'pointer';
+            return true;
+        }
+    });
+
+    if(!isChanged){
+        language_overlay.innerHTML = '';
+        language_overlay.style.cursor = 'default';
+        language_overlay.style.visibility = 'hidden';
+    }
+});
+
+language_overlay.addEventListener('click', () => {
+    if (language_overlay.innerText.length !== 0) {
+        
+        language.value = language_overlay.innerText;
+        language_overlay.innerHTML = ''; 
+        language_overlay.style.visibility = 'hidden';
+    }
+});
 class OffenseCard {
     constructor(values, id) {
         this.values = values;
@@ -321,6 +586,20 @@ class OffenseCard {
 
 class SkillCard {
     constructor(values, id) {
+        this.values = values;
+        this.id = id;
+    }
+}
+
+class TrainerCard {
+    constructor(values, id){
+        this.values = values;
+        this.id = id;
+    }
+}
+
+class LanguageCard {
+    constructor(values, id){
         this.values = values;
         this.id = id;
     }

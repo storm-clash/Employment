@@ -40,12 +40,41 @@
             <ul class="list_Content">
                 <li class="nav_item">
                     <a href="#personal">Personal Information</a>
+                    <div class="test">
+                        <a href="#skill_link" >
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="link-text">Skills</span>
+                        </a>
+
+                        <a href="#trainer_link" class="flex-row">
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="link-text">Special Trainer</span>
+                        </a>
+
+                        <a href="#language_link" class="flex-row">
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="link-text">Languages</span>
+                        </a>
+                    
+                    </div>
                 </li>
                 <li class="nav_item">
-                    <a href="#education">Education</a>
+                    <a href="#education">Education & Jobs</a>
+                    <div class="test">
+                        <a href="#education_link" >
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="link-text">Education</span>
+                        </a>
+
+                        <a href="#jobs_link" >
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="link-text">Jobs</span>
+                        </a>
+                    </div>
                 </li>
                 <li class="nav_item">
                     <a href="#information">Additional Information</a>
+                    <div class="test">Diana</div>
                 </li>
             </ul>
         </div>
@@ -285,7 +314,7 @@ condition prescribed by state or local law.
                                 
                             </fieldset>
                         </div>
-                        <div class="personal__Form-skill">
+                        <div class="personal__Form-skill" id="skill_link">
                             <fieldset>
                                 <legend>Skills</legend>
                                 <div class="personal__Skill-container">
@@ -310,6 +339,118 @@ condition prescribed by state or local law.
 
                             </fieldset>
                         </div>
+
+                        <div class="personal__Form-trainer" id="trainer_link">
+                            <fieldset>
+                                <legend>Special Trainer</legend>
+                                <div class="personal__Trainer-container">
+                                <div>
+                                    <div class="personal__Layaout">
+                                        <label>Trainer</label>
+                                        <div class="input-container">
+                                            <input name="trainer" id="trainer" />
+                                            <span id="trainer_overlay"></span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div>
+                                    <button id="add_Trainer" class="button">Add</button>
+                                </div>
+                                </div>
+                                <div class="show_Trainer_Card">
+                                    
+
+                                </div>
+
+                            </fieldset>
+                        </div>
+
+                        <div class="personal__Form-language" id="language_link">
+                            <fieldset>
+                                <legend>Languages</legend>
+                                <div class="personal__Language-container">
+                                    <div class="inline-blox">
+                                    
+                                        <div class="flex-column">
+                                            <label>Language</label>
+                                            <div class="input-container">
+                                                <input name="language" id="language" />
+                                                <span id="language_overlay"></span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-column">
+                                            <label>Writting</label>
+                                            <select id="writting">
+                                                <option value="Native">Native</option>
+                                                <option value="Advance">Advance</option>
+                                                <option value="Intermediate">Intermediate</option>
+                                                <option value="Beginner">Beginner</option>
+                                            </select>
+                                        </div>
+                                        <div class="flex-column">
+                                            <label>Reading</label>
+                                            <select id="reading">
+                                                <option value="Native">Native</option>
+                                                <option value="Advance">Advance</option>
+                                                <option value="Intermediate">Intermediate</option>
+                                                <option value="Beginner">Beginner</option>
+                                            </select>
+                                        </div>
+                                        <div class="flex-column">
+                                            <label>Speaking</label>
+                                            <select id="speaking">
+                                                <option value="Native">Native</option>
+                                                <option value="Advance">Advance</option>
+                                                <option value="Intermediate">Intermediate</option>
+                                                <option value="Beginner">Beginner</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button id="add_Language" class="button">Add</button>
+                                    </div>
+                                </div>
+                                <div class="show_Language_Card">
+                                    
+
+                                </div>
+
+                            </fieldset>
+                        </div>
+
+                        <div class="personal__Column-exp flex-row">
+                            <label>Have you ever been bonded?</label>
+
+                            <div>
+                                <input type="radio" id="bonded1" name="bonded" value="1" />
+                                <label for="bonded1">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="bonded2" name="bonded" value="2" checked />
+                                <label for="bonded2">No</label>
+                            </div>
+
+                        </div>
+
+                        <div class="personal__Layaout" id="bonded_Container">
+                            <input type="text" id="bonded_explain" />
+                        </div>
+
+                        <div class="personal__Column-exp flex-row">
+                            <label>CCLS Location</label>
+
+                            <div>
+                                <input type="radio" id="location1" name="location" value="1" checked />
+                                <label for="location1">Miami</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="location2" name="location" value="2"  />
+                                <label for="location2">Broadward</label>
+                            </div>
+
+                        </div>
+                        
                     </fieldset>
 
 
@@ -319,8 +460,172 @@ condition prescribed by state or local law.
 
 
     </section>
-    <section id="education"></section>
-    <section id="information"></section>
+    <section id="education">
+        <h2>Education & Previous Jobs</h2>
+        <div class="personal_Container">
+            <div class="personal__Center-Container">
+                <div class="personal__Form-education" id="education_link">
+                    <fieldset>
+                        <legend>Education</legend>
+                        <div class="education__container">
+                                <div>
+                                    <label>School Name</label>
+                                    <input type="text"/>
+                                </div>
+
+                                <div>
+                                    <label>School Level</label>
+                                    <select>
+                                        <option>High School</option>
+                                        <option>College/University</option>
+                                        <option>Post Graduate</option>
+                                        <option>Trade/certification</option>
+                                    </select>
+                                </div>
+
+                                <div class="two-container">
+                                    <div>
+                                        <label>Course Of Study</label>
+                                        <input type="text">
+                                    </div>
+
+                                    <div>
+                                        <label>Years Completed</label>
+                                        <input type="number">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="two-container">
+                                    <div>
+                                        <label>Did you Graduate?</label>
+                                        <select>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label>Degree or Diploma</label>
+                                        <select>
+                                            <option></option>
+                                            <option>Other</option>
+                                            <option>Degree</option>
+                                            <option>Diploma</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <div>
+                                    <button id="add_Education" class="button">Add</button>
+                                </div>
+                        </div>
+                        <div class="show_Education_Card">
+                                    
+
+                        </div>
+                    </fieldset>
+                        
+                    <fieldset>
+                        <legend>Jobs</legend>
+                        <div class="jobs__Container" id="jobs_link">
+                            
+                            <div class="two-container">
+                                <div>
+                                    <div>
+                                        <label>Company Name</label>
+                                        <input type="text"/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <label>Address</label>
+                                        <input type="text"/>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="two-container">
+                                <div>
+                                    <div>
+                                        <label>Telephone</label>
+                                        <input type="text"/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <label>Name of Supervisor</label>
+                                        <input type="text"/>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div><label>Employed(State month/year)</label></div>
+                            <div>
+                                <label>Employed From:</label>
+                                <input type="date"/>
+                            </div>
+                            <div>
+                                <label>Employed To:</label>
+                                <input type="date"/>
+                            </div>
+                            <div id="leave">
+                                <label>Reason to leave</label>
+                                <textarea></textarea>
+                            </div>
+                           
+                                <div>
+                                    <div>
+                                        <label>Starting Salary</label>
+                                        <input type="number"/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <label>Ending Salary</label>
+                                        <input type="number"/>
+                                    </div>
+                                </div>
+                                
+                                <div id="job_title">
+                                    <label>Job title</label>
+                                    <input type="text"/>
+                                </div>
+
+                                <div id="job_duties">
+                                    <label>Job Duties</label>
+                                    <textarea></textarea>
+                                </div>
+                            <div>
+                                <button id="add_Job" class="button">Add</button>
+                            </div>
+                            
+                        </div>
+                    </fieldset>
+                </div>
+                    
+            </div>
+        </div>
+            
+
+    </section>
+    <section id="information">
+        <h2>Additional Information</h2>
+        <div class="personal_Container">
+            <div class="personal__Center-Container">
+                <div class="personal__Form-aditional" id="aditional_link">
+
+                </div>
+            </div>
+                
+        </div>
+            
+    </section>
 
 </body>
 <script defer src="scripts/main.js"></script>
