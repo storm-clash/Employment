@@ -65,12 +65,28 @@ const speaking = document.getElementById('speaking');
 const add_Language = document.getElementById('add_Language');
 const language_div = document.querySelector('.show_Language_Card');
 
+/*Education*/
+
+const school_Name = document.getElementById('school_Name');
+const school_Level = document.getElementById('school_Level');
+const course_Study = document.getElementById('course_Study');
+const years_Completed = document.getElementById('years_Completed');
+const graduated = document.getElementById('graduated');
+const Degree_Diploma = document.getElementById('Degree_Diploma');
+const add_Education = document.getElementById('add_Education');
+const update_Education = document.getElementById('update_Education');
+const education_div = document.querySelector('.show_Education_Card');
+const education_Container = document.querySelector('.education__container');
+const education_inputs = education_Container.querySelectorAll('input, select');
+
 
 let globalInputValues = [];
 let globalInputSkills = [];
 let globalInputTrainer = [];
 let globalInputLanguage = [];
+let globalImputEducation = [];
 let offenseBeingEditedId = null;
+let educationBeingEditedId = null;
 
 let toggleInput = () => {
     var option_1 = terminated_1.checked;
@@ -581,6 +597,184 @@ language.addEventListener('input', ()=>{
     }
 });
 
+/*Education*/
+
+add_Education.addEventListener('click', ()=>{
+
+   
+
+    let checkAllInputs = checkInput(education_inputs);
+    
+    if(!checkAllInputs){
+        console.log("Debe llenar todos los inputs");
+        return;
+    }
+
+    const show_Education_Card = document.querySelector('.show_Education_Card');
+
+    let educationItem = document.createElement('div');
+    educationItem.className = 'card'; 
+    educationItem.dataset.id = Date.now();
+
+    let educationData = document.createElement('div');
+    educationData.className = 'flex_row';
+
+    let inner_Education = document.createElement('div');
+    inner_Education.className = 'flex_card';
+
+    let inner_Level = document.createElement('div');
+    inner_Level.className = 'flex_card';
+
+    let inner_Course = document.createElement('div');
+    inner_Course.className = 'flex_card';
+
+    let inner_Years = document.createElement('div');
+    inner_Years.className = 'flex_card';
+
+    let inner_Graduate = document.createElement('div');
+    inner_Graduate.className = 'flex_card';
+
+    let inputValues = [];
+    
+        let school_name_P = document.createElement('p');
+        school_name_P.textContent = school_Name.value;
+
+        let school_Icon = document.createElement('i');
+        school_Icon.className = 'fa-solid fa-building-columns';
+
+        inner_Education.appendChild(school_Icon);
+        inner_Education.appendChild(school_name_P);
+        educationData.appendChild(inner_Education);
+
+        let school_Level_P = document.createElement('p');
+        school_Level_P.textContent = school_Level.value;
+
+        let level_Icon = document.createElement('i');
+        level_Icon.className = 'fa-solid fa-trophy';
+        
+        inner_Level.appendChild(level_Icon);
+        inner_Level.appendChild(school_Level_P);
+        educationData.appendChild(inner_Level);
+
+        let school_course_P = document.createElement('p');
+        school_course_P.textContent = course_Study.value;
+
+        let course_Icon = document.createElement('i');
+        course_Icon.className = 'fa-solid fa-file';
+
+        inner_Course.appendChild(course_Icon);
+        inner_Course.appendChild(school_course_P);
+        educationData.appendChild(inner_Course);
+
+
+        let school_years_P = document.createElement('p');
+        school_years_P.textContent = years_Completed.value;
+
+        let years__Icon = document.createElement('i');
+        years__Icon.className = 'fa-regular fa-calendar';
+
+        inner_Years.appendChild(years__Icon);
+        inner_Years.appendChild(school_years_P);
+        educationData.appendChild(inner_Years);
+
+
+        let school_grad_P = document.createElement('p');
+        school_grad_P.textContent = graduated.value;
+
+        let grad_Icon = document.createElement('i');
+        grad_Icon.className = 'fa-solid fa-graduation-cap';
+
+        inner_Graduate.appendChild(grad_Icon);
+        inner_Graduate.appendChild(school_grad_P);
+        educationData.appendChild(inner_Graduate);
+       
+        educationItem.appendChild(educationData);
+
+        inputValues.push(school_Name.value);
+        inputValues.push(school_Level.value);
+        inputValues.push(course_Study.value);
+        inputValues.push(years_Completed.value);
+        inputValues.push(graduated.value);
+        // inputValues.push(speaking.value);
+        school_Name.value = '';
+        course_Study.value = '';
+        years_Completed.value = '';
+    
+    const educationId = educationItem.dataset.id;
+    let newCard = new EducationCard(inputValues,educationId);
+    globalImputEducation.push(newCard);
+
+    let educationButton = document.createElement('div');
+    educationButton.className = 'flex-row';
+
+    let button = document.createElement('i');
+    button.className = 'fa-solid fa-trash fa-2x';
+
+    let update = document.createElement('i');
+    update.className = 'fa-solid fa-pen fa-2x';
+
+    button.addEventListener('click', () => {
+        show_Education_Card.removeChild(educationItem);
+        globalImputEducation = globalImputEducation.filter(card => card.id !== educationId);
+        console.log(globalImputEducation);
+    });
+
+    update.addEventListener('click', () => {
+        fillEducation(inputValues);
+        update_Education.style.display = 'block';
+        add_Education.style.display = 'none';
+
+        educationBeingEditedId = educationId;
+    });
+    
+    educationButton.appendChild(button);
+    educationButton.appendChild(update);
+    educationItem.appendChild(educationButton);
+    show_Education_Card.appendChild(educationItem);
+
+    
+
+    const totalHeight = education_div.scrollHeight + show_Education_Card.scrollHeight;
+    education_div.style.maxHeight = `${totalHeight}px`;
+    console.log(globalImputEducation);
+
+});
+
+update_Education.addEventListener('click', () => {
+    let updatedValues = Array.from(education_inputs).map(input => input.value);
+
+    globalImputEducation = globalImputEducation.map(card => {
+        if (card.id === educationBeingEditedId) {
+            card.values = updatedValues;
+        }
+        return card;
+    });
+
+    const educationCardElements = document.querySelectorAll('.card');
+    educationCardElements.forEach(cardElement => {
+        if (cardElement.dataset.id === String(educationBeingEditedId)) {
+            const paragraphs = cardElement.querySelectorAll('p');
+            paragraphs.forEach((p, index) => {
+                p.textContent = updatedValues[index] || '';
+            });
+        }
+    });
+
+    console.log(globalImputEducation);
+
+    // Reset the UI after updating
+    update_Education.style.display = 'none';
+    add_Education.style.display = 'block';
+    education_inputs.forEach(input => input.value = '');
+});
+
+const fillEducation = (values) => {
+    education_inputs.forEach((input, index) => {
+        if (index < values.length) {
+            input.value = values[index];
+        }
+    });
+};
 class OffenseCard {
     constructor(values, id) {
         this.values = values;
@@ -608,6 +802,14 @@ class LanguageCard {
         this.id = id;
     }
 }
+
+class EducationCard {
+    constructor(values, id){
+        this.values = values;
+        this.id = id;
+    }
+}
+
 /*Upload */
 const fileInput = document.getElementById('upload');
 const fileName = document.getElementById('file-name');
@@ -643,3 +845,15 @@ menu.addEventListener('click', ()=>{
     }
     
 });
+
+/*Check all Input*/
+let checkInput = (list_Inputs) =>{
+
+    let allInputsFilled = true;
+    list_Inputs.forEach(input => {
+        if (input.value.trim() === '') {
+            allInputsFilled = false;
+        }
+    });
+    return allInputsFilled;
+};

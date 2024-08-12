@@ -41,6 +41,7 @@ html, body {
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 /*
     5. Improve media defaults
@@ -323,7 +324,8 @@ header {
         color: red;
         box-shadow: 10px 10px 0px 0px rgb(0, 105, 255);
     }
-#update_Offense {
+#update_Offense,
+#update_Education {
     display:none;
 }
 /*Main*/
@@ -585,7 +587,8 @@ main, section {
 .show_Offense_Card,
 .show_Skill_Card,
 .show_Trainer_Card,
-.show_Language_Card {
+.show_Language_Card,
+.show_Education_Card {
     display:grid;
     width:100%;
     grid-template-columns:repeat(3,1fr);
@@ -594,17 +597,26 @@ main, section {
     margin-top: 1rem;
 }
 .card {
+    width: 100%;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:70% 30%;
     gap:0.5rem;
     place-items:center;
-    max-width:14rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.flex_card{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+    width: 100%;
+}
+
+
+
 .personal__Offenses-container label {
     width: 30%;
 }
@@ -975,7 +987,8 @@ main, section {
     .show_Offense_Card,
     .show_Skill_Card,
     .show_Trainer_Card,
-    .show_Language_Card{
+    .show_Language_Card,
+    .show_Education_Card{
         grid-template-columns: 1fr;
         place-items: center;
     }

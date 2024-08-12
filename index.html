@@ -495,28 +495,28 @@ condition prescribed by state or local law.
                         <div class="education__container">
                                 <div>
                                     <label>School Name</label>
-                                    <input type="text"/>
+                                    <input id="school_Name" type="text"/>
                                 </div>
 
                                 <div>
                                     <label>School Level</label>
-                                    <select>
-                                        <option>High School</option>
-                                        <option>College/University</option>
-                                        <option>Post Graduate</option>
-                                        <option>Trade/certification</option>
+                                    <select id="school_Level">
+                                        <option value="High School">High School</option>
+                                        <option value="College/University">College/University</option>
+                                        <option value="Post Graduate">Post Graduate</option>
+                                        <option value="Trade/certification">Trade/certification</option>
                                     </select>
                                 </div>
 
                                 <div class="two-container">
                                     <div>
                                         <label>Course Of Study</label>
-                                        <input type="text">
+                                        <input id="course_Study" type="text">
                                     </div>
 
                                     <div>
                                         <label>Years Completed</label>
-                                        <input type="number">
+                                        <input id="years_Completed" type="number">
                                     </div>
                                     
                                 </div>
@@ -524,25 +524,26 @@ condition prescribed by state or local law.
                                 <div class="two-container">
                                     <div>
                                         <label>Did you Graduate?</label>
-                                        <select>
-                                            <option>Yes</option>
-                                            <option>No</option>
+                                        <select id="graduated">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
                                         </select>
                                     </div>
 
                                     <div>
                                         <label>Degree or Diploma</label>
-                                        <select>
-                                            <option></option>
-                                            <option>Other</option>
-                                            <option>Degree</option>
-                                            <option>Diploma</option>
+                                        <select id="Degree_Diploma">
+                                            <option value="Select">Select</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Degree">Degree</option>
+                                            <option value="Diploma">Diploma</option>
                                         </select>
                                     </div>
                                     
                                 </div>
                                 <div>
                                     <button id="add_Education" class="button">Add</button>
+                                    <button id="update_Education" class="button">Update</button>
                                 </div>
                         </div>
                         <div class="show_Education_Card">
