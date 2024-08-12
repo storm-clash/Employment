@@ -549,7 +549,15 @@ add_Language.addEventListener('click', ()=>{
 
 });
 
-
+language_overlay.addEventListener('click', () => {
+    
+    if (language_overlay.innerText.length !== 0) {
+        
+        language.value = language_overlay.innerText;
+        language_overlay.innerHTML = ''; 
+        language_overlay.style.visibility = 'hidden';
+    }
+});
 
 language.addEventListener('input', ()=>{
 
@@ -569,14 +577,6 @@ language.addEventListener('input', ()=>{
     }
 });
 
-language_overlay.addEventListener('click', () => {
-    if (language_overlay.innerText.length !== 0) {
-        
-        language.value = language_overlay.innerText;
-        language_overlay.innerHTML = ''; 
-        language_overlay.style.visibility = 'hidden';
-    }
-});
 class OffenseCard {
     constructor(values, id) {
         this.values = values;

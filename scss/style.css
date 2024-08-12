@@ -633,6 +633,7 @@ main, section {
     }
     .input-container:hover #overlay,
     .input-container:hover #trainer_overlay,
+    .input-container:hover #language_overlay,
 .input-container:focus-within #overlay,
 .input-container:focus-within #trainer_overlay,
 .input-container:focus-within #language_overlay {
@@ -819,6 +820,9 @@ main, section {
         display: block;
         height: auto;
     }
+    .card{
+        padding: .5rem;
+    }
     .only_phone{
         display: flex;
     }
@@ -873,7 +877,8 @@ main, section {
     }
     .personal__Name-field,
     .personal__Address,
-    .personal__Phone{
+    .personal__Phone,
+    .personal__Offenses-container{
         display: block;
     }
     .personal__Column-job{
@@ -882,10 +887,49 @@ main, section {
     }
     .personal__Column-job label:first-child{
         grid-column: span 2;
+        max-width: 100%;
+    }
+    .personal__Offenses-container label {
+        width: 50%;
+    }
+    
+    .show_Offense_Card,
+    .show_Skill_Card,
+    .show_Trainer_Card,
+    .show_Language_Card{
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+    .inline-blox{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .inline-blox div:first-child{
+        grid-column: span 2;
+        align-items: start;
+    }
+    .inline-blox div:last-child{
+        grid-column: span 2;
+    }
+    .personal__Column-exp {
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        
+    }
+    .personal__Column-exp div >label{
+        width: 100%;
+    }
+    .education__container{
+        grid-template-columns: 1fr;
+    }
+    .education__container div,
+    .jobs__Container div:nth-child(1),
+    .jobs__Container div:nth-child(2){
+        grid-column: span 2;
+    }
+    .full{
         width: 100%;
     }
     
-
 }
 
 
