@@ -19,7 +19,7 @@
 */
 *, *::before, *::after {
     box-sizing: border-box;
-    overflow-x: hidden;
+    
 }
 /*
     2. Remove default margin
@@ -36,6 +36,7 @@
 html, body {
     height: auto;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -254,6 +255,30 @@ header {
         .test a:hover span {
             color:black;
         }
+
+        .movil_Ul{
+            list-style-type: none;
+            height: 50px;
+        }
+        .hamburger{
+            margin-top: 5px;
+            height: 10px;
+            width: 50px;
+            border-radius: 20% / 90%;
+            background-color: var(--primary-color);
+            transition: 1s;
+            position: relative;
+        }
+        /* .movil_Ul:hover li:nth-child(1){
+            transform: translateY(15px) rotate(45deg);
+        }
+        .movil_Ul:hover li:nth-child(3){
+            transform: translateY(-15px) rotate(-45deg);
+        }
+        .movil_Ul:hover li:nth-child(2){
+            transform: rotate(-45deg);
+        } */
+        
         
 :is(a,.logo) {
     cursor:pointer;
@@ -668,6 +693,46 @@ main, section {
         border-radius: 0.5rem;
         padding: 10px 20px;
     }
+
+    .hamburger__Menu-container {
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+        position: absolute;
+        top: 0;
+        right: 50px;
+        width: 0;
+        height: 12.5rem; 
+        background-color: white;
+        z-index: 23;
+        visibility: hidden;
+        opacity: 0;
+        transition: width 600ms ease, opacity 600ms ease, visibility 600ms ease;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        border:2px solid var(--clr-secondary-200);
+        padding: 10px 20px;
+    }
+
+    .hamburger__Menu-container.active{
+        display: flex;
+        align-items: flex-start;
+        visibility: visible;
+        opacity: 1;
+        width: 10rem;
+        gap:1rem;
+    }
+    .hamburger__Menu-container a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-around;
+        text-align: center;
+    }
+    .hamburger__Menu-container a:hover{
+        background-color: #0056b3;
+    }
     #writting,
     #reading,
     #speaking{
@@ -820,11 +885,17 @@ main, section {
         display: block;
         height: auto;
     }
+    header{
+        padding: .5rem 1rem;
+        align-items: center;
+        justify-content: space-around;
+    }
     .card{
         padding: .5rem;
     }
     .only_phone{
         display: flex;
+        position: relative;
     }
     .right_header_container,
     .center_container{
@@ -843,6 +914,9 @@ main, section {
     .about__Description{
         order: 2;
         padding: .5rem;
+    }
+    .logo{
+        max-width: 4rem;
     }
     .about__logo {
         order: 1;
@@ -929,7 +1003,13 @@ main, section {
     .full{
         width: 100%;
     }
-    
+    .only_Print {
+        display: none;
+    }
+    .left_header_container{
+        width: 100%;
+        justify-content: start;
+    }
 }
 
 

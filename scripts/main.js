@@ -3,6 +3,10 @@ const terminated_2 = document.getElementById('option2');
 const explain = document.getElementById('explain');
 const exlain_div = document.getElementById('explain_Container');
 
+/*HamburgerMenu*/
+const menu = document.querySelector('.movil_Ul');
+const hamburger = document.querySelector('.hamburger__Menu-container');
+
 var radios = document.querySelectorAll('input[name="options"]');
 var different_Names = document.querySelectorAll('input[name="different"]');
 var bonded = document.querySelectorAll('input[name="bonded"]');
@@ -614,4 +618,28 @@ fileInput.addEventListener('change', function() {
     } else {
         fileName.textContent = 'No file chosen';
     }
+});
+
+/*Menu Movil */
+const listItems = menu.querySelectorAll('li');
+let isClicked = false;
+menu.addEventListener('click', ()=>{
+     
+    if(!isClicked){
+        listItems[0].style.transform = 'translateY(15px) rotate(45deg)';
+        listItems[1].style.transform = 'rotate(-45deg)';
+        listItems[2].style.transform = 'translateY(-15px) rotate(-45deg)';
+
+        hamburger.classList.toggle('active');
+
+    isClicked = true;
+
+    }else{
+        listItems.forEach(li => {
+            li.style.transform = ''; 
+        });
+        hamburger.classList.toggle('active');
+        isClicked = false;
+    }
+    
 });
