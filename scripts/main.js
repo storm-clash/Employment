@@ -604,3 +604,14 @@ class LanguageCard {
         this.id = id;
     }
 }
+/*Upload */
+const fileInput = document.getElementById('upload');
+const fileName = document.getElementById('file-name');
+
+fileInput.addEventListener('change', function() {
+    if (fileInput.files.length > 0) {
+        fileName.textContent = fileInput.files[0].name;
+    } else {
+        fileName.textContent = 'No file chosen';
+    }
+});

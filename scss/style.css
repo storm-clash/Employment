@@ -19,6 +19,7 @@
 */
 *, *::before, *::after {
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 /*
     2. Remove default margin
@@ -75,6 +76,7 @@ body {
     font-size: 0.875rem;
     color: var(--clr-neutral-400);
     background-color: var(--clr-secondary-200);
+    width: 100vw;
     max-width:100vw;
     margin:0 .5rem;
     
@@ -132,6 +134,9 @@ input:not(:is([type="radio"])),textarea {
 }
 .fa-solid:hover {
     cursor:pointer;
+}
+.only_phone{
+    display: none;
 }
 /*Header*/
 header {
@@ -311,6 +316,7 @@ main, section {
     flex-wrap: wrap;
     box-sizing: border-box;
     position: relative;
+    margin: 1rem;
     margin-bottom: 1rem;
 }
 .main__Left-Blob {
@@ -339,6 +345,7 @@ main, section {
     padding: .5rem;
     flex: 1 0 400px;
     width: 100%;
+    height: auto;
     z-index: 2;
 }
 .main__About,
@@ -346,6 +353,7 @@ main, section {
     flex: 1 0 200px;
     background-color:white;
     border-radius:0.5rem;
+    height: auto;
 }
 .main__About {
    margin-left:30%; 
@@ -357,6 +365,7 @@ main, section {
     font-size: 1rem;
     font-weight: var(--fw-bold);
     line-height:2rem;
+    height: auto;
 }
 .about__logo {
     min-width: 300px;
@@ -382,12 +391,12 @@ main, section {
     justify-content:center;
 }
 .openings__logo {
-    min-width: 400px;
-    height: 400px;
+    min-width: 300px;
+    height: 300px;
 }
     .openings__logo img {
-        min-width: 400px;
-        height: 400px;
+        min-width: 300px;
+        height: 300px;
         object-fit: contain;
     }
 
@@ -396,7 +405,8 @@ main, section {
     background-color: #FCD0A1;
     border-radius:0.5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     height:65%;
 }
 
@@ -743,6 +753,126 @@ main, section {
     grid-column: span 2;
     justify-self: end;
 }
+.input_firm_date{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap:0.5rem;
+    width: 100%;
+    margin-top:2rem;
+}
+.input_firm_date label{
+    width: fit-content;
+}
+.upload__Container{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#upload {
+    display: none; /* Hide the actual file input */
+}
+
+.custom-upload {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.custom-upload:hover {
+    background-color: #0056b3;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #555;
+}
+#submit_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.acknowledge{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.acknowledge h3{
+    text-align: center;
+}
+.acknowledge p{
+    padding: 0.5rem;
+}
+
+@media (min-width: 320px) and (max-width: 475px){
+   
+    body{
+        max-width: 100vw;
+    }
+    .only_phone{
+        display: flex;
+    }
+    .right_header_container,
+    .center_container{
+        display: none;
+    }
+    .main__Product{
+        height: auto;
+    }
+    .main__About{
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .about__Description{
+        order: 2;
+        padding: .5rem;
+    }
+    .about__logo {
+        order: 1;
+        min-width: 200px;
+        height: 200px;
+    }
+        .about__logo img {
+            min-width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .openings__logo {
+            min-width: 250px;
+            height: 250px;
+        }
+            .openings__logo img {
+                min-width: 250px;
+                height: 250px;
+                object-fit: contain;
+            }
+    .main__Openings{
+        margin-right: 0;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+}
+
+
+
+
     @media print {
         .right_header_container {
         display: none;
