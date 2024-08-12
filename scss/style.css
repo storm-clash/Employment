@@ -36,7 +36,6 @@
 html, body {
     height: auto;
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
@@ -719,7 +718,7 @@ main, section {
         align-items: flex-start;
         visibility: visible;
         opacity: 1;
-        width: 10rem;
+        width: 12rem;
         gap:1rem;
     }
     .hamburger__Menu-container a {
@@ -727,11 +726,16 @@ main, section {
         display: flex;
         align-items: center;
         gap: 1rem;
-        justify-content: space-around;
+        justify-content: space-between;
         text-align: center;
+        width: 100%;
+        transition: 600ms ease;
     }
     .hamburger__Menu-container a:hover{
-        background-color: #0056b3;
+        width: 100%;
+        border-radius: 0.5rem;
+        padding: 0 1rem;
+        background-color: var(--clr-secondary-200);
     }
     #writting,
     #reading,
