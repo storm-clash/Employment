@@ -150,11 +150,11 @@ condition prescribed by state or local law.
                     <fieldset class="personal__Name-field">
                         <legend>Name</legend>
                         <div class="personal__Layaout">
-                            <label>Last Name</label>
-                            <input />
+                            <label data-css="mandatory">Last Name</label>
+                            <input data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
-                            <label>First Name</label>
+                            <label data-css="mandatory">First Name</label>
                             <input />
                         </div>
                         <div class="personal__Layaout">
@@ -162,7 +162,7 @@ condition prescribed by state or local law.
                             <input />
                         </div>
                         <div class="personal__Layaout">
-                            <label>Birth Date</label>
+                            <label data-css="mandatory">Birth Date</label>
                             <input />
                         </div>
                     </fieldset>
@@ -173,19 +173,19 @@ condition prescribed by state or local law.
                     <fieldset class="personal__Address">
                         <legend>Address</legend>
                         <div class="personal__Layaout">
-                            <label>Street Address</label>
+                            <label data-css="mandatory">Address</label>
                             <input />
                         </div>
                         <div class="personal__Layaout">
-                            <label>City</label>
+                            <label data-css="mandatory">City</label>
                             <input />
                         </div>
                         <div class="personal__Layaout">
-                            <label>State</label>
+                            <label data-css="mandatory">State</label>
                             <input />
                         </div>
                         <div class="personal__Layaout">
-                            <label>Zip Code</label>
+                            <label data-css="mandatory">Zip Code</label>
                             <input />
                         </div>
                     </fieldset>
@@ -235,7 +235,7 @@ condition prescribed by state or local law.
                             <input />
                         </div>
                         <div class="personal__Column-job ">
-                            <label>Employment Desired.</label>
+                            <label data-css="mandatory">Employment Desired.</label>
 
                             <div>
                                 <input type="radio" id="full" name="job" value="1" />
@@ -252,7 +252,7 @@ condition prescribed by state or local law.
 
                         </div>
                         <div class="personal__Column-exp flex-row">
-                            <label>Are you legally eligible to work in the United States?</label>
+                            <label data-css="mandatory">Are you legally eligible to work in the United States?</label>
 
                             <div>
                                 <input type="radio" id="permision1" name="permision" value="1" />
@@ -265,15 +265,15 @@ condition prescribed by state or local law.
 
                         </div>
                         <div class="personal__Layaout">
-                            <label>Days/Hours Available</label>
+                            <label data-css="mandatory">Days/Hours Available</label>
                             <input />
                         </div>
                         <div class="personal__Layaout">
-                            <label>Date Available</label>
+                            <label data-css="mandatory">Date Available</label>
                             <input />
                         </div>
                         <div class="personal__Column-exp flex-row">
-                            <label>Have you ever worked under a different name: If YES, explain</label>
+                            <label data-css="mandatory">Have you ever worked under a different name: If YES, explain</label>
 
                             <div>
                                 <input type="radio" id="different1" name="different" value="1" />
@@ -289,7 +289,7 @@ condition prescribed by state or local law.
                             <input type="text" id="different_explain" />
                         </div>
                         <div class="personal__Column-exp flex-row">
-                            <label>
+                            <label data-css="mandatory">
                                 Have you ever been convicted of a crime or been a defendant in a civil action for
                                 an intentional tort?(Convictions will not necessarily disqualify
                                 you for the position) If YES, list offense, date and disposition of the case</label>
@@ -693,17 +693,17 @@ condition prescribed by state or local law.
 
                                 <div class="input_firm_date">
                                     <div class="flex-column">
-                                        <label>Applicant Full Name</label>
+                                        <label data-css="mandatory">Applicant Full Name</label>
                                         <input type="text">
                                     </div>
                                     <div class="flex-column">
-                                        <label>Date</label>
+                                        <label data-css="mandatory">Date</label>
                                         <input type="date">
                                     </div>
                                 </div>
                     </div>
                     <div id="submit_container">
-                        <button class="button">Submit</button>
+                        <button id="send_Form" class="button">Submit</button>
                     </div>
                 </div>
             </div>

@@ -98,7 +98,7 @@ label{
     display: inline-flex;
     gap: .3rem;
 }
-    label::after {
+    label:is([data-css="mandatory"])::after {
         content:"*";
         color:red;
     }
@@ -630,8 +630,17 @@ main, section {
     align-items: center;
     font-size: 1.25rem;
 }
-
-
+.card_span_2{
+    width: 100%;
+    grid-column: span 2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.card_span_2 p {
+    margin: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
 
 .personal__Offenses-container label {
     width: 30%;
