@@ -80,13 +80,33 @@ const education_Container = document.querySelector('.education__container');
 const education_inputs = education_Container.querySelectorAll('input, select');
 
 
+/*Jobs*/
+const company_Name = document.getElementById('company_Name');
+const company_Address = document.getElementById('company_Address');
+const company_Telephone = document.getElementById('company_Telephone');
+const company_Supervisor = document.getElementById('company_Supervisor');
+const company_Start = document.getElementById('company_Start');
+const company_End = document.getElementById('company_End');
+const company_Reazon_To_Leave = document.getElementById('company_Reazon_To_Leave');
+const company_Starting_Salary = document.getElementById('company_Starting_Salary');
+const company_Ending_Salary = document.getElementById('company_Ending_Salary');
+const company_Job_Title = document.getElementById('company_Job_Title');
+const company_Job_Duties = document.getElementById('company_Job_Duties');
+const add_Job = document.getElementById('add_Job');
+const update_Job = document.getElementById('update_Job');
+const jobs_div = document.querySelector('.show_Jobs_Card');
+const job_Container = document.querySelector('.jobs__Container');
+const job_inputs = job_Container.querySelectorAll('input, select');
+
 let globalInputValues = [];
 let globalInputSkills = [];
 let globalInputTrainer = [];
 let globalInputLanguage = [];
 let globalImputEducation = [];
+let globalInputJobs = [];
 let offenseBeingEditedId = null;
 let educationBeingEditedId = null;
+let jobBeingEditedId = null;
 
 let toggleInput = () => {
     var option_1 = terminated_1.checked;
@@ -634,6 +654,9 @@ add_Education.addEventListener('click', ()=>{
     let inner_Graduate = document.createElement('div');
     inner_Graduate.className = 'flex_card';
 
+    let inner_Diploma = document.createElement('div');
+    inner_Diploma.className = 'flex_card';
+
     let inputValues = [];
     
         let school_name_P = document.createElement('p');
@@ -687,6 +710,16 @@ add_Education.addEventListener('click', ()=>{
         inner_Graduate.appendChild(grad_Icon);
         inner_Graduate.appendChild(school_grad_P);
         educationData.appendChild(inner_Graduate);
+
+        let school_Diploma_P = document.createElement('p');
+        school_Diploma_P.textContent = Degree_Diploma.value;
+
+        let Diploma_Icon = document.createElement('i');
+        Diploma_Icon.className = 'fa-solid fa-scroll';
+
+        inner_Diploma.appendChild(Diploma_Icon);
+        inner_Diploma.appendChild(school_Diploma_P);
+        educationData.appendChild(inner_Diploma);
        
         educationItem.appendChild(educationData);
 
@@ -695,7 +728,8 @@ add_Education.addEventListener('click', ()=>{
         inputValues.push(course_Study.value);
         inputValues.push(years_Completed.value);
         inputValues.push(graduated.value);
-        // inputValues.push(speaking.value);
+        inputValues.push(Degree_Diploma.value);
+
         school_Name.value = '';
         course_Study.value = '';
         years_Completed.value = '';
@@ -775,6 +809,206 @@ const fillEducation = (values) => {
         }
     });
 };
+
+
+/*Jobs*/
+
+add_Job.addEventListener('click', ()=>{
+
+   
+
+    let checkAllInputs = checkInput(job_inputs);
+    
+    if(!checkAllInputs){
+        console.log("Debe llenar todos los inputs");
+        return;
+    }
+
+    const show_Jobs_Card = document.querySelector('.show_Jobs_Card');
+
+    let jobItem = document.createElement('div');
+    jobItem.className = 'card'; 
+    jobItem.dataset.id = Date.now();
+
+    let jobData = document.createElement('div');
+    jobData.className = 'flex_row';
+
+    let inner_Company_Name = document.createElement('div');
+    inner_Company_Name.className = 'flex_card';
+
+    let inner_Company_Address = document.createElement('div');
+    inner_Company_Address.className = 'flex_card';
+
+    let inner_Company_Telephone = document.createElement('div');
+    inner_Company_Telephone.className = 'flex_card';
+
+    let inner_Company_Supervisor = document.createElement('div');
+    inner_Company_Supervisor.className = 'flex_card';
+
+    let inner_Company_Start = document.createElement('div');
+    inner_Company_Start.className = 'flex_card';
+
+    let inner_Company_End = document.createElement('div');
+    inner_Company_End.className = 'flex_card';
+
+    let inputValues = [];
+    
+        let company_name_P = document.createElement('p');
+        company_name_P.textContent = company_Name.value;
+
+        let name_Icon = document.createElement('i');
+        name_Icon.className = 'fa-solid fa-building-columns';
+
+        inner_Company_Name.appendChild(name_Icon);
+        inner_Company_Name.appendChild(company_name_P);
+        jobData.appendChild(inner_Company_Name);
+
+        let company_Address_P = document.createElement('p');
+        company_Address_P.textContent = company_Address.value;
+
+        let address_Icon = document.createElement('i');
+        address_Icon.className = 'fa-solid fa-trophy';
+        
+        inner_Company_Address.appendChild(address_Icon);
+        inner_Company_Address.appendChild(company_Address_P);
+        jobData.appendChild(inner_Company_Address);
+
+        let company_Telephone_P = document.createElement('p');
+        company_Telephone_P.textContent = company_Telephone.value;
+
+        let telephone_Icon = document.createElement('i');
+        telephone_Icon.className = 'fa-solid fa-file';
+
+        inner_Company_Telephone.appendChild(telephone_Icon);
+        inner_Company_Telephone.appendChild(company_Telephone_P);
+        jobData.appendChild(inner_Company_Telephone);
+
+
+        let company_Supervisor_P = document.createElement('p');
+        company_Supervisor_P.textContent = company_Supervisor.value;
+
+        let supervisor__Icon = document.createElement('i');
+        supervisor__Icon.className = 'fa-regular fa-calendar';
+
+        inner_Company_Supervisor.appendChild(supervisor__Icon);
+        inner_Company_Supervisor.appendChild(company_Supervisor_P);
+        jobData.appendChild(inner_Company_Supervisor);
+
+
+        let company_Start_P = document.createElement('p');
+        company_Start_P.textContent = company_Start.value;
+
+        let start_Icon = document.createElement('i');
+        start_Icon.className = 'fa-solid fa-graduation-cap';
+
+        inner_Company_Start.appendChild(start_Icon);
+        inner_Company_Start.appendChild(company_Start_P);
+        jobData.appendChild(inner_Company_Start);
+
+        let company_End_P = document.createElement('p');
+        company_End_P.textContent = company_End.value;
+
+        let end_Icon = document.createElement('i');
+        end_Icon.className = 'fa-solid fa-scroll';
+
+        inner_Company_End.appendChild(end_Icon);
+        inner_Company_End.appendChild(company_End_P);
+        jobData.appendChild(inner_Company_End);
+       
+        jobItem.appendChild(jobData);
+
+        inputValues.push(company_Name.value);
+        inputValues.push(company_Address.value);
+        inputValues.push(company_Telephone.value);
+        inputValues.push(company_Supervisor.value);
+        inputValues.push(company_Start.value);
+        inputValues.push(company_End.value);
+
+        company_Name.value = '';
+        company_Address.value = '';
+        company_Telephone.value = '';
+        company_Supervisor.value = '';
+        company_Start.value ='';
+        company_End.value = '';
+    
+    const jobId = jobItem.dataset.id;
+    let newCard = new JobCard(inputValues,jobId);
+    globalInputJobs.push(newCard);
+
+    let jobButton = document.createElement('div');
+    jobButton.className = 'flex-row';
+
+    let button = document.createElement('i');
+    button.className = 'fa-solid fa-trash fa-2x';
+
+    let update = document.createElement('i');
+    update.className = 'fa-solid fa-pen fa-2x';
+
+    button.addEventListener('click', () => {
+        show_Jobs_Card.removeChild(jobItem);
+        globalInputJobs = globalInputJobs.filter(card => card.id !== jobId);
+        console.log(globalInputJobs);
+    });
+
+    update.addEventListener('click', () => {
+        fillJob(inputValues);
+        update_Job.style.display = 'block';
+        add_Job.style.display = 'none';
+
+        jobBeingEditedId = jobId;
+    });
+    
+    jobButton.appendChild(button);
+    jobButton.appendChild(update);
+    jobItem.appendChild(jobButton);
+    show_Jobs_Card.appendChild(jobItem);
+
+    
+
+    const totalHeight = jobs_div.scrollHeight + show_Jobs_Card.scrollHeight;
+    jobs_div.style.maxHeight = `${totalHeight}px`;
+    console.log(globalInputJobs);
+
+});
+
+update_Job.addEventListener('click', () => {
+    let updatedValues = Array.from(job_inputs).map(input => input.value);
+
+    globalInputJobs = globalInputJobs.map(card => {
+        if (card.id === jobBeingEditedId) {
+            card.values = updatedValues;
+        }
+        return card;
+    });
+
+    const jobCardElements = document.querySelectorAll('.card');
+    jobCardElements.forEach(cardElement => {
+        if (cardElement.dataset.id === String(jobBeingEditedId)) {
+            const paragraphs = cardElement.querySelectorAll('p');
+            paragraphs.forEach((p, index) => {
+                p.textContent = updatedValues[index] || '';
+            });
+        }
+    });
+
+    console.log(globalInputJobs);
+
+    // Reset the UI after updating
+    update_Job.style.display = 'none';
+    add_Job.style.display = 'block';
+    job_inputs.forEach(input => input.value = '');
+});
+
+const fillJob = (values) => {
+    job_inputs.forEach((input, index) => {
+        if (index < values.length) {
+            input.value = values[index];
+        }
+    });
+};
+
+
+
 class OffenseCard {
     constructor(values, id) {
         this.values = values;
@@ -804,6 +1038,13 @@ class LanguageCard {
 }
 
 class EducationCard {
+    constructor(values, id){
+        this.values = values;
+        this.id = id;
+    }
+}
+
+class JobCard {
     constructor(values, id){
         this.values = values;
         this.id = id;

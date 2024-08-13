@@ -112,6 +112,11 @@ input:not(:is([type="radio"])),textarea {
     max-width: 100%;
     transition:600ms ease;
 }
+textarea{
+    min-width: 100%;
+    min-height: 3rem;
+    padding: 0.5rem;
+}
     input:focus {
         border-bottom: 1px solid rgb(0, 105, 255);
     }
@@ -325,7 +330,8 @@ header {
         box-shadow: 10px 10px 0px 0px rgb(0, 105, 255);
     }
 #update_Offense,
-#update_Education {
+#update_Education,
+#update_Job {
     display:none;
 }
 /*Main*/
@@ -588,7 +594,8 @@ main, section {
 .show_Skill_Card,
 .show_Trainer_Card,
 .show_Language_Card,
-.show_Education_Card {
+.show_Education_Card,
+.show_Jobs_Card {
     display:grid;
     width:100%;
     grid-template-columns:repeat(3,1fr);
@@ -610,9 +617,18 @@ main, section {
 }
 .flex_card{
     display: flex;
-    gap:1rem;
     align-items: center;
+    padding: .3rem;
+    gap:1rem;
     width: 100%;
+}
+.flex_card i{
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
 }
 
 
@@ -972,6 +988,10 @@ main, section {
     .personal__Offenses-container{
         display: block;
     }
+    .personal__Offenses-container div:nth-child(4){
+        display: flex;
+        justify-content: end;
+    }
     .personal__Column-job{
         display: grid;
         grid-template-columns: repeat(2,1fr);
@@ -988,7 +1008,8 @@ main, section {
     .show_Skill_Card,
     .show_Trainer_Card,
     .show_Language_Card,
-    .show_Education_Card{
+    .show_Education_Card,
+    .show_Jobs_Card{
         grid-template-columns: 1fr;
         place-items: center;
     }
