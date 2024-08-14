@@ -5,6 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" 
+    content="default-src 'self'; 
+             script-src 'self' https://trusted.cdn.com https://ajax.googleapis.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com; 
+             style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+             font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+             connect-src 'self';
+             img-src 'self' data:;">
     <title></title>
     <!-- jQuery and Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -151,42 +158,55 @@ condition prescribed by state or local law.
                         <legend>Name</legend>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">Last Name</label>
-                            <input data-value="mandatory"/>
+                            <input id="lastName" data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">First Name</label>
-                            <input />
+                            <input id="firstName" data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
                             <label>Middle Name</label>
-                            <input />
+                            <input id="midName"/>
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">Birth Date</label>
-                            <input />
+                            <input id="DOB" type="date" data-value="mandatory"/>
                         </div>
                     </fieldset>
 
 
                 </div>
                 <div class="personal__Name">
+                    <fieldset class="personal__Name-field">
+                        <legend>Email Address</legend>
+                        <div class="personal__Layaout" id="need_Span_2">
+                            <label data-css="mandatory">Email Address</label>
+                            <div class="input-container">
+                                <input data-value="mandatory" type="email" name="email" id="email" maxlength="50"/>
+                                <span id="email_overlay"></span>
+                            </div>
+                           
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="personal__Name">
                     <fieldset class="personal__Address">
                         <legend>Address</legend>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">Address</label>
-                            <input />
+                            <input id="address"/>
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">City</label>
-                            <input />
+                            <input id="city" data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">State</label>
-                            <input />
+                            <input id="state" data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">Zip Code</label>
-                            <input />
+                            <input id="zip" data-value="mandatory"/>
                         </div>
                     </fieldset>
 
@@ -197,11 +217,11 @@ condition prescribed by state or local law.
                         <legend>Phone Number</legend>
                         <div class="personal__Layaout">
                             <label>Home Phone</label>
-                            <input />
+                            <input id="phone"/>
                         </div>
                         <div class="personal__Layaout">
                             <label>Other Phone</label>
-                            <input />
+                            <input id="otherPhone"/>
                         </div>
                     </fieldset>
 
@@ -214,11 +234,11 @@ condition prescribed by state or local law.
                             <label>Have you ever been involuntary terminated or requested to resign? If YES, explain.</label>
 
                             <div>
-                                <input type="radio" id="option1" name="options" value="1" />
+                                <input type="radio" id="option1" name="options" value="Yes" />
                                 <label for="option1">Yes</label>
                             </div>
                             <div>
-                                <input type="radio" id="option2" name="options" value="2" checked />
+                                <input type="radio" id="option2" name="options" value="No" checked />
                                 <label for="option2">No</label>
                             </div>
 
@@ -227,26 +247,26 @@ condition prescribed by state or local law.
                             <input type="text" id="explain" />
                         </div>
                         <div class="personal__Layaout">
-                            <label>Position Desired</label>
-                            <input />
+                            <label data-css="mandatory">Position Desired</label>
+                            <input id="desiredPosition" data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
                             <label>Salary Desired</label>
-                            <input />
+                            <input id="desiredSalary"/>
                         </div>
                         <div class="personal__Column-job ">
                             <label data-css="mandatory">Employment Desired.</label>
 
                             <div>
-                                <input type="radio" id="full" name="job" value="1" />
+                                <input type="radio" id="full" name="job" value="Fulltime" checked/>
                                 <label for="full">Full Time</label>
                             </div>
                             <div>
-                                <input type="radio" id="part" name="job" value="2" />
+                                <input type="radio" id="part" name="job" value="Parttime" />
                                 <label for="part">Part Time</label>
                             </div>
                             <div>
-                                <input type="radio" id="temp" name="job" value="3" />
+                                <input type="radio" id="temp" name="job" value="Temporary" />
                                 <label for="temp">Temporary</label>
                             </div>
 
@@ -255,32 +275,32 @@ condition prescribed by state or local law.
                             <label data-css="mandatory">Are you legally eligible to work in the United States?</label>
 
                             <div>
-                                <input type="radio" id="permision1" name="permision" value="1" />
+                                <input type="radio" id="permision1" name="permision" value="Yes" checked/>
                                 <label for="permision1">Yes</label>
                             </div>
                             <div>
-                                <input type="radio" id="permision2" name="permision" value="2" />
+                                <input type="radio" id="permision2" name="permision" value="No" />
                                 <label for="permision2">No</label>
                             </div>
 
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">Days/Hours Available</label>
-                            <input />
+                            <input id="days" data-value="mandatory"/>
                         </div>
                         <div class="personal__Layaout">
                             <label data-css="mandatory">Date Available</label>
-                            <input />
+                            <input id="availability" type="date" data-value="mandatory"/>
                         </div>
                         <div class="personal__Column-exp flex-row">
                             <label data-css="mandatory">Have you ever worked under a different name: If YES, explain</label>
 
                             <div>
-                                <input type="radio" id="different1" name="different" value="1" />
+                                <input type="radio" id="different1" name="different" value="Yes" />
                                 <label for="different1">Yes</label>
                             </div>
                             <div>
-                                <input type="radio" id="different2" name="different" value="2" checked />
+                                <input type="radio" id="different2" name="different" value="No" checked />
                                 <label for="different2">No</label>
                             </div>
 
@@ -448,11 +468,11 @@ condition prescribed by state or local law.
                             <label>Have you ever been bonded?</label>
 
                             <div>
-                                <input type="radio" id="bonded1" name="bonded" value="1" />
+                                <input type="radio" id="bonded1" name="bonded" value="Yes" />
                                 <label for="bonded1">Yes</label>
                             </div>
                             <div>
-                                <input type="radio" id="bonded2" name="bonded" value="2" checked />
+                                <input type="radio" id="bonded2" name="bonded" value="No" checked />
                                 <label for="bonded2">No</label>
                             </div>
 
@@ -466,11 +486,11 @@ condition prescribed by state or local law.
                             <label>CCLS Location</label>
 
                             <div>
-                                <input type="radio" id="location1" name="location" value="1" checked />
+                                <input type="radio" id="location1" name="location" value="Miami" checked />
                                 <label for="location1">Miami</label>
                             </div>
                             <div>
-                                <input type="radio" id="location2" name="location" value="2"  />
+                                <input type="radio" id="location2" name="location" value="Broadward"  />
                                 <label for="location2">Broadward</label>
                             </div>
 
@@ -533,7 +553,6 @@ condition prescribed by state or local law.
                                     <div>
                                         <label>Degree or Diploma</label>
                                         <select id="Degree_Diploma">
-                                            <option value="Select">Select</option>
                                             <option value="Other">Other</option>
                                             <option value="Degree">Degree</option>
                                             <option value="Diploma">Diploma</option>
@@ -694,11 +713,11 @@ condition prescribed by state or local law.
                                 <div class="input_firm_date">
                                     <div class="flex-column">
                                         <label data-css="mandatory">Applicant Full Name</label>
-                                        <input type="text">
+                                        <input id="signature" type="text" data-value="mandatory">
                                     </div>
                                     <div class="flex-column">
                                         <label data-css="mandatory">Date</label>
-                                        <input type="date">
+                                        <input id="signatureDate" type="date" data-value="mandatory">
                                     </div>
                                 </div>
                     </div>

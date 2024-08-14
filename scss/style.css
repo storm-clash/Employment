@@ -142,6 +142,9 @@ textarea{
 .only_phone{
     display: none;
 }
+#need_Span_2{
+    grid-column: span 2;
+}
 /*Header*/
 header {
     width: 100%;
@@ -703,6 +706,21 @@ main, section {
     cursor: pointer;
     
 }
+
+#email_overlay{
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    padding: 5px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+    color: white;
+    font-size: 14px;
+    visibility: hidden;
+    background-color: orange;
+    border-radius: 0.5rem;
+
+    }
     .personal__Skill-container label,
     .personal__Trainer-container label{
         width: 30%;

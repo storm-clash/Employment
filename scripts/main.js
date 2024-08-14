@@ -5,6 +5,27 @@ const terminated_2 = document.getElementById('option2');
 const explain = document.getElementById('explain');
 const exlain_div = document.getElementById('explain_Container');
 
+/*Principal Info */
+const lastName = document.getElementById('lastName');
+const firstName = document.getElementById('firstName');
+const midName = document.getElementById('midName');
+const DOB = document.getElementById('DOB');
+
+/*Address*/
+const address = document.getElementById('address');
+const city = document.getElementById('city');
+const state = document.getElementById('state');
+const zip = document.getElementById('zip');
+
+const phone = document.getElementById('phone');
+const otherPhone = document.getElementById('otherPhone');
+
+const desiredPosition = document.getElementById('desiredPosition');
+const desiredSalary = document.getElementById('desiredSalary');
+
+const days = document.getElementById('days');
+const availability = document.getElementById('availability');
+
 /*HamburgerMenu*/
 const menu = document.querySelector('.movil_Ul');
 const hamburger = document.querySelector('.hamburger__Menu-container');
@@ -52,6 +73,10 @@ const trainer = document.getElementById('trainer');
 const trainer_overlay = document.getElementById('trainer_overlay');
 const add_Trainer = document.getElementById('add_Trainer');
 const trainer_div = document.querySelector('.personal__Form-trainer');
+
+/*Email */
+const email = document.getElementById('email');
+const email_overlay = document.getElementById('email_overlay');
 
 /*Language */
 
@@ -223,7 +248,13 @@ bonded.forEach((radio) => {
 add_Offense.addEventListener('click', () => {
 
     let offenseValues = Array.from(personal__Offenses).map(input => input.value);
-    let hasSomeEmptyValue = offenseValues.some(value => value === '' || value === null || value === undefined);
+    let hasSomeEmptyValue = offenseValues.some((value, index) => {
+        if (value === '' || value === null || value === undefined) {
+            personal__Offenses[index].style.borderRight = "5px solid orange";
+            return true;
+        }
+        return false;
+    });
     if (hasSomeEmptyValue) {
         console.log('some values are empty');
         return;
@@ -353,11 +384,22 @@ skill.addEventListener('input', ()=>{
     }
 });
 
+email.addEventListener('input', ()=>{
+
+    if(email.value === ''){
+        email_overlay.innerHTML = '';
+        email_overlay.visibility = 'hidden';
+        email_overlay.style.display = 'none';
+
+        email.style.borderRight = '1px solid #ccc';
+    }
+});
 
 add_Skill.addEventListener('click', ()=>{
 
     let skill_Value = skill.value;
     if(skill_Value === '' || skill_Value === null || skill_Value === undefined){
+        skill.style.borderRight = "5px solid orange";
         console.log("NO");
             return;
     }
@@ -444,6 +486,7 @@ add_Trainer.addEventListener('click', ()=>{
 
     let trainer_Value = trainer.value;
     if(trainer_Value === '' || trainer_Value === null || trainer_Value === undefined){
+        trainer.style.borderRight = "5px solid orange";
         console.log("NO");
             return;
     }
@@ -531,6 +574,7 @@ add_Language.addEventListener('click', ()=>{
 
     let language_Value = language.value;
     if(language_Value === '' || language_Value === null || language_Value === undefined){
+        language.style.borderRight = "5px solid orange";
         console.log("NO");
             return;
     }
@@ -1049,9 +1093,12 @@ class UploadFile {
     }
 }
 
+
+
 /*Upload */
 const fileInput = document.getElementById('upload');
 const fileName = document.getElementById('file-name');
+const label = document.querySelector('.custom-upload');
 
 fileInput.addEventListener('change', () => {
 
@@ -1070,6 +1117,9 @@ fileInput.addEventListener('change', () => {
     fileName.textContent = file.name;
 
     upload_File = new UploadFile(file.name, file.type, file.size);
+
+        label.style.backgroundColor = '#007BFF';
+        label.style.color = 'white';
 
     console.log(upload_File);
 });
@@ -1104,6 +1154,7 @@ let checkInput = (list_Inputs) =>{
     let allInputsFilled = true;
     list_Inputs.forEach(input => {
         if (input.value.trim() === '') {
+            input.style.borderRight = "5px solid orange";
             allInputsFilled = false;
         }
     });
@@ -1148,19 +1199,24 @@ function validateMandatoryFields() {
         }
 
         if (value.trim() !== '') {
-            field.style.borderRight = "5px solid green";
+
+            if(field.type === 'email' && !validateEmail(value)){
+                field.style.borderRight = "5px solid orange";
+                email_overlay.style.display = 'block';
+                 email_overlay.style.visibility = 'visible';
+                 email_overlay.innerText = 'Invalid Email';
+                allValid = false;
+                scrollToField(field)
+            }else{
+
+                field.style.borderRight = "5px solid green";
+            }
+
         } else {
             field.style.borderRight = "5px solid red";
             allValid = false;
 
-            const fieldRect = field.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const scrollTo = window.scrollY + fieldRect.top - (windowHeight / 2) + (fieldRect.height / 2);
-
-            window.scrollTo({
-                top: scrollTo,
-                behavior: 'smooth'
-            });
+            scrollToField(field)
         }
     });
 
@@ -1171,6 +1227,8 @@ function validateMandatoryFields() {
 send_Form.addEventListener('click', () =>{
 
     send_Form.disabled = true;
+
+    sanitizeAllFields();
     
     let isValidInput = validateMandatoryFields();
     if(!isValidInput){
@@ -1178,6 +1236,147 @@ send_Form.addEventListener('click', () =>{
         return;
     }
 
-    console.log("OK");
+    if(upload_File.length === 0){
+        label.style.backgroundColor = 'orange';
+        label.style.color = 'white';
+        scrollToField(label);
+        send_Form.disabled = false;
+        return;
+    }
+
+    let formData = collectData();
+    console.log(formData);
+
+    setTimeout(() => {
+        send_Form.disabled = false; 
+    }, 2000);
 
 });
+
+/*Validate email */
+
+let validateEmail = (email) => {
+    const maxLength = 254;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email.length > maxLength) {
+        return false; 
+    }
+
+    return regex.test(email);
+};
+
+/*Sanitize*/
+let sanitize = (input) =>{
+    if(input){
+    return input.replace(/<[^>]*>/g, '');
+    }
+    return '';
+};
+
+
+function sanitizeAllFields() {
+    const allFields = document.querySelectorAll('input, textarea, select');
+    
+    allFields.forEach(field => {
+        let value;
+        if (field.tagName === 'TEXTAREA' || (field.tagName === 'INPUT' && field.type !== 'file')) {
+            value = field.value;
+        } else if (field.tagName === 'SELECT') {
+            value = field.options[field.selectedIndex].value;
+        }
+
+        const sanitizedValue = sanitize(value);
+
+        if (field.tagName === 'TEXTAREA' || (field.tagName === 'INPUT' && field.type !== 'file')) {
+            field.value = sanitizedValue;
+        } else if (field.tagName === 'SELECT') {
+            field.options[field.selectedIndex].value = sanitizedValue;
+        }
+    });
+}
+
+const scrollToField = (field) => {
+    const fieldRect = field.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const scrollTo = window.scrollY + fieldRect.top - (windowHeight / 2) + (fieldRect.height / 2);
+
+    window.scrollTo({
+        top: scrollTo,
+        behavior: 'smooth'
+    });
+};
+
+/*Check Radios */
+
+let selectedRadio = (name) =>{
+
+    const radios = document.getElementsByName(name);
+
+    let selectedValue;
+
+    radios.forEach(radio =>{
+        if(radio.checked){
+            selectedValue = radio.value;
+        }
+    });
+
+    return selectedValue;
+};
+
+/*Recolect Data */
+
+let collectData = () =>{
+
+    const formData = {
+        applicant: {
+            lastName: lastName.value,
+            firstName: firstName.value,
+            middleName: midName.value,
+            DOB: DOB.value,
+            email:email.value,
+            address: address.value,
+            city:city.value,
+            state:state.value,
+            zip:zip.value,
+            phone:phone.value,
+            otherPhone: otherPhone.value,
+            terminated: selectedRadio('options'),
+            explain:explain.value,
+            bonded:selectedRadio('bonded'),
+            bondedExplain:bonded_explain.value,
+        },
+        jobDetails:{
+            desiredPosition: desiredPosition.value,
+            desiredSalary: desiredSalary.value,
+            employmentDesired : selectedRadio('job'),
+            legal: selectedRadio('permision'),
+            days: days.value,
+            availability: availability.value,
+            differentName: selectedRadio('different'),
+            different_explain:different_explain.value,
+            cclsLocation:selectedRadio('location'),
+        },
+        skills:{
+            globalInputSkills,
+        },
+        trainer:{
+            globalInputTrainer,
+        },
+        language:{
+            globalInputLanguage,
+        },
+        education:{
+            globalImputEducation,
+        },
+        jobs:{
+            globalInputJobs,
+        },
+        resume:{
+            upload_File,
+        },
+        
+    };
+
+    return formData;
+};
