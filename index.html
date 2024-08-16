@@ -116,8 +116,26 @@
         </div>
     </header>
     <main>
+        
 
         <div class="main__Product">
+            <div id="loading-screen">
+                <ul>
+                    <li class="dot"></li>
+                    <li class="dot"></li>
+                    <li class="dot"></li>
+                </ul>
+            </div>
+            <div class="messageContainer" id="errorMessageJson">
+                <div class="popup" id="errorPopup">
+                    <img src="images/x.jpg" alt="logo" />
+                    <h2>Sorry!</h2>
+                    <p>There was an error while retrieving the records.</p>
+                    <button id="dinamic_Json_Error" type="button" data-popup="errorPopup" data-container="errorMessageJson">OK</button>
+                </div>
+            
+            </div>
+
             <div class="main__About flex-group">
                 <p class="about__Description">
                     Catholic Charities Legal Services is an equal opportunity employer. Prospective employees will receive consideration without

@@ -125,6 +125,10 @@ const jobs_div = document.querySelector('.show_Jobs_Card');
 const job_Container = document.querySelector('.jobs__Container');
 const job_inputs = job_Container.querySelectorAll('input, select, textarea');
 
+/*Signature*/
+const signature = document.getElementById('signature');
+const signatureDate = document.getElementById('signatureDate');
+
 /*Global Values */
 let globalInputValues = [];
 let globalInputSkills = [];
@@ -147,7 +151,10 @@ let toggleInput = () => {
     var option_1 = terminated_1.checked;
 
     if (!option_1) {
-        
+        if(explain.hasAttribute('data-value')){
+
+            explain.removeAttribute('data-value');
+        }
         explain.style.maxHeight = '0';
         setTimeout(() => {
             explain.style.display = 'none';
@@ -156,6 +163,7 @@ let toggleInput = () => {
         return;
     }
     explain.style.display = 'flex';
+    explain.setAttribute('data-value', 'mandatory');
     explain.style.maxHeight = `${explain.scrollHeight + 44}px`;
 
 };
@@ -170,15 +178,21 @@ let toggleInputDifferent_Name = () => {
     var option_1 = name_1.checked;
 
     if (!option_1) {
-        
+
+        if (name_different_Input.hasAttribute('data-value')) {
+
+            name_different_Input.removeAttribute('data-value');
+        }
+
         name_different_Input.style.maxHeight = '0';
         setTimeout(() => {
             name_different_Input.style.display = 'none';
         }, 1000);
-        
+
         return;
     }
     name_different_Input.style.display = 'flex';
+    name_different_Input.setAttribute('data-value', 'mandatory');
     name_different_Input.style.maxHeight = `${name_different_Input.scrollHeight + 44}px`;
 
 };
@@ -226,15 +240,21 @@ let toggleBonded = () => {
     var option_1 = bonded_1.checked;
 
     if (!option_1) {
-        
+
+        if (bonded_explain.hasAttribute('data-value')) {
+
+            bonded_explain.removeAttribute('data-value');
+        }
+
         bonded_explain.style.maxHeight = '0';
         setTimeout(() => {
             bonded_explain.style.display = 'none';
         }, 1000);
-        
+
         return;
     }
     bonded_explain.style.display = 'flex';
+    bonded_explain.setAttribute('data-value', 'mandatory');
     bonded_explain.style.maxHeight = `${bonded_explain.scrollHeight + 44}px`;
 
 };
@@ -1247,6 +1267,15 @@ send_Form.addEventListener('click', () =>{
     let formData = collectData();
     console.log(formData);
 
+    //getData(formData);
+
+    //var errorMsg = document.getElementById('errorMessageJson');
+    // errorMsg.style.display = 'flex';
+    // openPopup("errorPopup")
+
+    var errorMsg = document.getElementById('loading-screen');
+        errorMsg.style.display = 'flex';
+
     setTimeout(() => {
         send_Form.disabled = false; 
     }, 2000);
@@ -1345,6 +1374,8 @@ let collectData = () =>{
             explain:explain.value,
             bonded:selectedRadio('bonded'),
             bondedExplain:bonded_explain.value,
+            signature :signature.value,
+            signatureDate:signatureDate.value,
         },
         jobDetails:{
             desiredPosition: desiredPosition.value,
@@ -1356,6 +1387,10 @@ let collectData = () =>{
             differentName: selectedRadio('different'),
             different_explain:different_explain.value,
             cclsLocation:selectedRadio('location'),
+        },
+
+        felony:{
+            globalInputValues,
         },
         skills:{
             globalInputSkills,
@@ -1380,3 +1415,73 @@ let collectData = () =>{
 
     return formData;
 };
+
+function getData(formData) {
+    //$('#loading-screen').show();
+
+    var startTime = new Date().getTime();
+    console.log("Sending data...");
+    
+    $.ajax({
+        type: "POST",
+        url: "Employment_Application_Employment.aspx/insert",
+        data: JSON.stringify({ formData: formData }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var result = response.d ? JSON.parse(response.d) : null;
+            if (!result || result.length === 0) {
+                console.error('No data returned from server.');
+                // Optionally show error message or handle empty result
+                return;
+            }
+             // $('#loading-screen').fadeOut(2000);
+                // var resultContainer = document.getElementById('resultContainer');
+                // resultContainer.style.display = "block";
+            console.log(result);
+            // Optionally update UI based on result
+        },
+        error: function (xhr, status, error) {
+            console.error('Error occurred:', status, error);
+            // Optionally show error message or handle the AJAX error
+        },
+        complete: function () {
+            //$('#loading-screen').fadeOut(2000);
+        }
+    });
+}
+
+/*Additional Functions */
+
+function openPopup(Popup) {
+    var popup = document.getElementById(Popup);
+    popup.classList.add("open-popup");
+}
+
+function closePopupNoRefresh(Popup, contenedor) {
+    var popup = document.getElementById(Popup);
+    var container = document.getElementById(contenedor);
+
+
+    popup.classList.remove("open-popup");
+    container.style.display = 'none';
+
+    //$('html, body').animate({
+    //    scrollTop: 0
+    //}, 1000);
+
+    //window.location.replace('https://www.cclsmiami.org/board.aspx');
+
+
+
+}
+
+/*Event Delegation*/
+document.addEventListener('click', (event)=>{
+
+    if(event.target && event.target.id === 'dinamic_Json_Error'){
+        const popupId = event.target.getAttribute('data-popup');
+        const containerId = event.target.getAttribute('data-container');
+        closePopupNoRefresh(popupId, containerId);
+    }
+});
